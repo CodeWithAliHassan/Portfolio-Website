@@ -1,4 +1,4 @@
-name: Linting Pipeline
+name: Linting Workflow
 
 on:
   push:
@@ -9,25 +9,28 @@ on:
       - develop
 
 jobs:
-  lint:
+  linting:
     runs-on: ubuntu-latest
     steps:
-      - name: Welcome Message
-        run: echo "Welcome to my workflow"
-
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: '16'
 
       - name: Install dependencies
-        run: npm install htmlhint stylelint --save-dev
+        run: npm install
+
+      - name: Grant execution permissions
+        run: chmod +x ./node_modules/.bin/stylelint
+
+      - name: Run Stylelint
+        run: npx stylelint "**/*.css"
 
       - name: Run HTMLHint
         run: npx htmlhint "**/*.html"
 
-      - name: Run Stylelint
-        run: npx stylelint "**/*.css"
+
+      

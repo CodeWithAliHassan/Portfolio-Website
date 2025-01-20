@@ -11,21 +11,23 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      - name: Welcome Message
+        run: echo "Welcome to my workflow"
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Install Dependencies
-      run: npm install htmlhint stylelint
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
-    - name: Run HTMLHint
-      run: npx htmlhint "src/**/*.html"
+      - name: Install dependencies
+        run: npm install htmlhint stylelint --save-dev
 
-    - name: Run Stylelint
-      run: npx stylelint "styles/**/*.css"
+      - name: Run HTMLHint
+        run: npx htmlhint "**/*.html"
+
+      - name: Run Stylelint
+        run: npx stylelint "**/*.css"S

@@ -30,4 +30,4 @@ jobs:
         run: npx htmlhint "**/*.html"
 
       - name: Run Stylelint
-        run: npx stylelint "**/*.css"S
+        run: npx stylelint "**/*.css"
